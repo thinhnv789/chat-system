@@ -1,0 +1,16 @@
+extends ./../layout
+
+block stylesheets
+	link(rel="stylesheet", href="")
+
+block content
+	h1 Welcome
+
+block scripts
+	script(src='/socket.io/socket.io.js')
+	script.
+		var socket = io();
+		socket.on('join_chat', function (data) {
+			console.log(data);
+			socket.emit('client_send_data', { client: 'my client' });
+		});

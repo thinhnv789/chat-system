@@ -15,6 +15,7 @@ var dbConfig = require('./src/config/dbConfig.json');
 var Database = require('./src/config/dbconnection');
 
 var index = require('./src/routes/index');
+var chat = require('./src/routes/chat');
 
 var app = express();
 
@@ -62,6 +63,7 @@ app.use('/libs', express.static(__dirname + '/node_modules/'));
 app.use(express.static(path.join(__dirname, '/public')));
 
 app.use('/', index);
+app.use('/chat', chat);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

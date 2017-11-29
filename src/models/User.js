@@ -8,6 +8,7 @@ const mongoose = require('mongoose');
  */
 const userSchema = new mongoose.Schema({
     userName: { type: String, unique: true },
+    phoneNumber: { type: String, unique: true },
     email: { type: String, unique: true },
     password: String,
     passwordResetToken: String,
@@ -21,7 +22,8 @@ const userSchema = new mongoose.Schema({
     address: {type: String},
 
     roles: [{type: mongoose.Schema.Types.ObjectId, ref: 'Role'}],
-    status: Boolean,
+    status: { type: Number }, // active, block, reported
+    groups: [{type: mongoose.Schema.Types.ObjectId, ref: 'Group'}]
 }, {timestamps: true});
 
 /**
