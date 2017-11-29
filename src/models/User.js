@@ -23,7 +23,7 @@ const userSchema = new mongoose.Schema({
 
     roles: [{type: mongoose.Schema.Types.ObjectId, ref: 'Role'}],
     status: { type: Number }, // active, block, reported
-    groups: [{type: mongoose.Schema.Types.ObjectId, ref: 'Group'}]
+    rooms: [{type: mongoose.Schema.Types.ObjectId, ref: 'Room'}]
 }, {timestamps: true});
 
 /**

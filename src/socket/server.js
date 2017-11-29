@@ -4,7 +4,6 @@ const User = require('./../models/Group');
 var ioEvents = function(io) {
     io.on('connection', function(socket){
         socket.on('client_identifier', function(data) {
-            console.log('client send data', data)
             User.findOne({userName: data.userName}).exec(function (err, user) {
                 if (err) {
                     console.log('err', err)
@@ -31,7 +30,7 @@ var ioEvents = function(io) {
                         /**
                          * Create group
                          */
-                        
+
                     })
                 }
             });
