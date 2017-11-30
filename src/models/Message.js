@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
  * @name messageModel
  */
 const messageSchema = new mongoose.Schema({
-    conversation: {type: mongoose.Schema.Types.ObjectId, ref: 'Conversation'},
+    recipient: {type: mongoose.Schema.Types.ObjectId},
     messageContent: { type: String },
     status: { type: number }, // active, deleted
     createdBy: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},

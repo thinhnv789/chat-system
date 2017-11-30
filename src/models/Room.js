@@ -9,7 +9,7 @@ const roomSchema = new mongoose.Schema({
     members: [{type: mongoose.Schema.Types.ObjectId, ref: 'User'}],
     createdBy: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
     updatedBy: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
-    status: { type: number }, // active, inActive
+    status: { type: Number }, // active, inActive
 }, {timestamps: true});
 
 const Room = mongoose.model('Room', roomSchema);

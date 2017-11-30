@@ -3,7 +3,12 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res) {
-  res.send('chat app is running');
+  res.render('index');
+});
+
+/* GET admin page */
+router.get('/admin', function(req, res) {
+  res.render('admin/index');
 });
 
 module.exports = router;

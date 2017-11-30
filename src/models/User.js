@@ -23,6 +23,7 @@ const userSchema = new mongoose.Schema({
 
     roles: [{type: mongoose.Schema.Types.ObjectId, ref: 'Role'}],
     status: { type: Number }, // active, block, reported
+    isOnline: { type: Boolean },
     rooms: [{type: mongoose.Schema.Types.ObjectId, ref: 'Room'}]
 }, {timestamps: true});
 
