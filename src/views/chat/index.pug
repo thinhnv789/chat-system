@@ -5,12 +5,8 @@ block stylesheets
 
 block content
 	h1 Welcome
-
+	input#message_content(type="text")
+	button#client_send_message Send
 block scripts
 	script(src='/socket.io/socket.io.js')
-	script.
-		var socket = io();
-		socket.on('join_chat', function (data) {
-			console.log(data);
-			socket.emit('client_send_data', { client: 'my client' });
-		});
+	script(src='/javascripts/socket-client.js')

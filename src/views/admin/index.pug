@@ -4,7 +4,9 @@ block stylesheets
 		link(rel="stylesheet", href="")
 
 block content
-	p Chat test
+	h1 Chat test ttt
+	input#message_content(type="text")
+	button#admin_send_message Send
 
 block scripts
 		script(src='/socket.io/socket.io.js')

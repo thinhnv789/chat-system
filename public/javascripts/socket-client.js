@@ -2,23 +2,37 @@ const socket = io();
 // const adminSocket = io('/admin');
 
 socket.on('connect', () => {
-    socket.emit(
-        'account_info',
-        { 
-            userName: 'admin',
-            email: 'admin@gmail.com',
-            password: '123456'
-        }
-    );
-     /**
+    let data = localStorage.getItem('account');
+
+    data = data ? JSON.parse(data) : null;
+
+    /**
+     * Client join chat
+     */
+    socket.emit('client_join_chat', data);
+
+    /**
+     * Get identify from server and save to local storage
+     */
+    socket.on('client_identifier', (data) => {
+        localStorage.setItem('account', JSON.stringify(data));
+    })
+
+    /**
      * Event receive message from server
      */
     socket.on('owner_message', (data) => {
         let messEl = document.createElement('li');
         messEl.textContent = data.messageContent;
         document.body.appendChild(messEl);
-    });
-    
+
+        /**
+         * set partner
+         */
+        let sendMessBtn = document.getElementById('client_send_message');
+        sendMessBtn.setAttribute('to', data.to);
+    })
+
     /**
      * Event receive message from server
      */
@@ -30,30 +44,30 @@ socket.on('connect', () => {
         /**
          * set partner
          */
-        let sendMessBtn = document.getElementById('admin_send_message');
+        let sendMessBtn = document.getElementById('client_send_message');
         sendMessBtn.setAttribute('to', data.sender.room);
     });
 
     /**
-     * Admin send message to customer care
+     * Client send message to customer care
      */
-    let sendMessBtn = document.getElementById('admin_send_message');
+    let sendMessBtn = document.getElementById('client_send_message');
     if (sendMessBtn) {
         sendMessBtn.onclick = function(e) {
             let messageContent = document.getElementById('message_content');
             if (messageContent) {
                 let value = messageContent.value;
-                let sender = {
-                    room: 'room_customer_care',
-                    userName: 'admin',
-                    email: 'admin@gmail.com'
-                };
-                let to = sendMessBtn.getAttribute('to');
+                let sender = localStorage.getItem('account'), dataSend = {};
     
-                if (value && to) {
+                if (value && sender) {
+                    /**
+                     * Case existing user
+                     */
+                    sender = JSON.parse(sender);
+    
                     dataSend = {
                         sender: sender,
-                        to: to,
+                        to: 'room_customer_care',
                         messageContent: value
                     }
     
