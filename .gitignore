@@ -3,6 +3,3 @@
 
 #ignore media
 /media
-
-#ignore config
-/src/config

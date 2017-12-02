@@ -1,0 +1,5 @@
+{
+  "mongodb": {
+      "address": "mongodb://thinhnv:123456@ds125016.mlab.com:25016/chatsystem"
+  }
+}
